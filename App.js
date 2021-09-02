@@ -47,9 +47,9 @@ const App: () => Node = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
             <CompassComponent 
-              bearing={90}
-              width={400}
-              height={400}
+              bearing={70}
+              width={300}
+              height={300}
               accuracyCallBack={(accuracy) => console.log(accuracy)}
           />
 

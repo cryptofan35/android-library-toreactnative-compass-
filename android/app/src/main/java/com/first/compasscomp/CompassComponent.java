@@ -48,16 +48,17 @@ public class CompassComponent extends RelativeLayout {
 
     public CompassComponent(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        setPadding(8, 8, 8, 8);
 
         sotwFormatter = new SOTWFormatter(context);
         backgroundView = new ImageView(context);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(320, 320);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(this.getWidth()/5*2, this.getWidth()/5*2);
         params.addRule(RelativeLayout.CENTER_IN_PARENT);
         backgroundView.setLayoutParams(params);
         backgroundView.setImageResource(R.drawable.dial);
         arrowView = new ImageView(context);
-        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(300, 300);
+        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(this.getWidth()/5*2 - 20, this.getWidth()/5*2 - 20);
         params1.addRule(RelativeLayout.CENTER_IN_PARENT);
         arrowView.setLayoutParams(params1);
         arrowView.setImageResource(R.drawable.hands);
@@ -91,18 +92,18 @@ public class CompassComponent extends RelativeLayout {
 
     public void setCompassWidth(double width) {
       
-        backgroundView.getLayoutParams().width = (int)width;
+        backgroundView.getLayoutParams().width = (int)(convertPxToDp(this.mContext, (float) width));
         backgroundView.requestLayout();
 
-        arrowView.getLayoutParams().width = (int) (width - 20);
+        arrowView.getLayoutParams().width = (int) (convertPxToDp(this.mContext, (float) width-20));
         arrowView.requestLayout();
     }
 
     public void setCompassHeight(double height) {
-        backgroundView.getLayoutParams().height = (int)height;
+        backgroundView.getLayoutParams().height = (int)(convertPxToDp(this.mContext, (float) height));;
         backgroundView.requestLayout();
 
-        arrowView.getLayoutParams().height = (int) (height - 20);
+        arrowView.getLayoutParams().height = (int) (convertPxToDp(this.mContext, (float) height-20));
         arrowView.requestLayout();
     }
 
@@ -184,6 +185,11 @@ public class CompassComponent extends RelativeLayout {
     public void stop(){
         compass.stop();
     }
+
+    public float convertPxToDp(Context context, float px) {
+        return px / context.getResources().getDisplayMetrics().density;
+    }
+
 
 
 }
