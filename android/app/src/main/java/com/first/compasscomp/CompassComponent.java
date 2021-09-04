@@ -48,7 +48,7 @@ public class CompassComponent extends RelativeLayout {
 
     public CompassComponent(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         setPadding(8, 8, 8, 8);
 
         sotwFormatter = new SOTWFormatter(context);
